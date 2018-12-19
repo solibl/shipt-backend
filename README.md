@@ -1,24 +1,7 @@
-# README
+npm install --save react-router-dom
+npm install axios --save
+npm install bootstrap --save
+npm install reactstrap react react-dom --save
+npm start
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+rails s -p 3001
