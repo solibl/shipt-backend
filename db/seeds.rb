@@ -8,13 +8,16 @@ require 'faker'
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Wipe Database with seeded information
-Customer.destroy_all
+User.destroy_all
 
 Category.destroy_all
 
 Product.destroy_all
 
-Customer.create(first_name: 'John', last_name: 'Smith', password: 'password', email: 'test@shiptdev.com')
+Status.destroy_all
+
+User.create(first_name: 'John', last_name: 'Smith', password: 'password', email: 'test@shiptdev.com')
+
 Category.create(name: 'Bouquets')
 
 list_of_flowers = ['Dahlia','Daisy','Violet','Rose','Lily']
@@ -29,9 +32,9 @@ Category.create(name: 'Instrument')
 
 list_of_instruments = ['Flute', 'Violin', 'Harp', 'Ukelele', 'Oboe', 'Harmonica', 'Xylophone']
 list_of_instruments.each do |instrument| 
-	new_movie = Product.new(name: instrument)
-	new_movie.category = Category.find_by(name: 'Instrument')
-	new_movie.save!
+	product = Product.new(name: instrument)
+	product.category = Category.find_by(name: 'Instrument')
+	product.save!
 end
 
 Category.create(name: 'Ingredients')
@@ -42,4 +45,10 @@ list_of_ingredients.each do |ingredient|
 	product = Product.new(name: ingredient, weight: weights.sample)
 	product.category = Category.find_by(name: 'Ingredients')
 	product.save!
+end
+
+list_of_statuses = ['Waiting for delivery', 'On its way', 'Delivered']
+list_of_statuses.each do |status|
+	new_status = Status.new(name: status)
+	new_status.save!
 end

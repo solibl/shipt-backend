@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::API
-	before_action :authenticate_request, except: [:index, :destroy]
+	include ActionController::MimeResponds
+	before_action :authenticate_request, except: [:csv, :destroy]
 	attr_reader :current_user
 
-	private
+	protected
 
 	def authenticate_request
 		@current_user = AuthorizeApiRequests.call(request.headers).result

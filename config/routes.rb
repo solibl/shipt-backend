@@ -5,7 +5,12 @@ Rails.application.routes.draw do
 			resources :categories do
 				resources :products
 			end
+			resources :orders
 			post 'authenticate', to: 'authentication#authenticate'
+			get 'all_products', to: 'products#all_products'
+			get 'order_history', to: 'orders#order_history'
+			post 'order_search', to: 'orders#order_search'
+			get 'csv', to: 'orders#csv'
 		end
 	end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_18_234804) do
+ActiveRecord::Schema.define(version: 2018_12_19_153102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,30 +21,23 @@ ActiveRecord::Schema.define(version: 2018_12_18_234804) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "customers", force: :cascade do |t|
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.string "email", null: false
-    t.string "password_digest", null: false
+  create_table "order_products", force: :cascade do |t|
+    t.integer "number_of_purchased", null: false
+    t.bigint "order_id"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_products_on_order_id"
+    t.index ["product_id"], name: "index_order_products_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.bigint "status_id"
-    t.bigint "customer_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["status_id"], name: "index_orders_on_status_id"
-  end
-
-  create_table "orders_products", id: false, force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.bigint "order_id", null: false
-    t.integer "number_purchased", null: false
-    t.index ["order_id"], name: "index_orders_products_on_order_id"
-    t.index ["product_id"], name: "index_orders_products_on_product_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -58,6 +51,15 @@ ActiveRecord::Schema.define(version: 2018_12_18_234804) do
 
   create_table "statuses", force: :cascade do |t|
     t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

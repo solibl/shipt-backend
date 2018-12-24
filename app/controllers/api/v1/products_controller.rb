@@ -4,6 +4,10 @@ module Api::V1
 			@products = Category.find(params[:category_id]).products
 			render json: @products		
 		end
-		private
+
+		def all_products
+			@all_products = Product.all
+			render json: @all_products
+		end
 	end
 end
