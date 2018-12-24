@@ -26,6 +26,8 @@ rails s -p 3001
 
 This will setup the backend server that the frontend can use it's API end points to get data from our database.
 
+There are also instructions in the Shipt-Frontend directory on how to access the app from the frontend with a username and password. These two can be found in the Readme file as well.
+
 ## Assumptions/Improvements
 
 There were a few assumptions that I have made during the creation of this application. Through the stories I have made some associations where categories and products have a one to many relationship. A customer will have a one to many relationship with an order. The assumption for an order is to have a many to many relationship with products that I have generated a joins table for. An order also has a one to many association to a status. Story 5 was the biggest assumption that I have made. Since this is a very basic app, the assumption I have made is that the to make an order you need to have an account. However to view the search history page, I believe that it was very close to a "most popular" page where the user can query things that have been purchased during the time selected. This can also be viewed as an admin feature which I assumed is useful on both ends. 
