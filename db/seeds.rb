@@ -52,3 +52,16 @@ list_of_statuses.each do |status|
 	new_status = Status.new(name: status)
 	new_status.save!
 end
+
+current_user = User.first
+all_products = Product.all
+all_statuses = Status.all
+
+20.times do 
+	random_product = all_products.sample
+	new_date = Faker::Date.between(10.days.ago, Date.today).to_time 
+	new_order = Order.create(user: current_user, status: all_statuses.sample, created_at: new_date)
+	new_list = OrderProduct.new(order: new_order, product: random_product, number_of_purchased: Random.rand(1..30))
+	new_list.created_at = new_date
+	new_list.save!
+end
